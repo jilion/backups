@@ -11,4 +11,5 @@ gem 'clockwork'
 
 group :development do
   gem 'foreman'
+  gem 'heroku'
 end

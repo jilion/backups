@@ -19,42 +19,39 @@ Backup::Model.new(:backup, 'Jilion Backup') do
   # MongoDB [Database]
   #
   database MongoDB do |db|
-    db.name               = "my_database_name"
-    db.username           = "my_username"
-    db.password           = "my_password"
-    db.host               = "localhost"
+    db.name               = "MySublime"
+    db.username           = "backups"
+    db.password           = ENV['MONGOHQ_MYSUBLIME_PASSWORD']
+    db.host               = "swan.mongohq.com/app182505"
     db.port               = 5432
-    db.ipv6               = false
-    db.only_collections   = ['only', 'these' 'collections']
-    db.additional_options = []
     db.lock               = false
   end
 
   ##
   # PostgreSQL [Database]
   #
-  database PostgreSQL do |db|
-    db.name               = "my_database_name"
-    db.username           = "my_username"
-    db.password           = "my_password"
-    db.host               = "localhost"
-    db.port               = 5432
-    db.socket             = "/tmp/pg.sock"
-    db.skip_tables        = ['skip', 'these', 'tables']
-    db.only_tables        = ['only', 'these' 'tables']
-    db.additional_options = ['-xc', '-E=utf8']
-  end
+  # database PostgreSQL do |db|
+  #   db.name               = "my_database_name"
+  #   db.username           = "my_username"
+  #   db.password           = "my_password"
+  #   db.host               = "localhost"
+  #   db.port               = 5432
+  #   db.socket             = "/tmp/pg.sock"
+  #   db.skip_tables        = ['skip', 'these', 'tables']
+  #   db.only_tables        = ['only', 'these' 'tables']
+  #   db.additional_options = ['-xc', '-E=utf8']
+  # end
 
   ##
   # SFTP (Secure File Transfer Protocol) [Storage]
   #
   store_with SFTP do |server|
-    server.username = 'my_username'
-    server.password = 'my_password'
-    server.ip       = '123.45.678.90'
+    server.username = 'backups'
+    server.password = ENV['SFTP_PASSWORD']
+    server.ip       = 'team.jime.com'
     server.port     = 22
-    server.path     = '~/backups/'
-    server.keep     = 5
+    server.path     = '/Shared Items/Backups'
+    server.keep     = 20
   end
 
   ##
@@ -68,19 +65,19 @@ Backup::Model.new(:backup, 'Jilion Backup') do
   ##
   # Mail [Notifier]
   #
-  notify_by Mail do |mail|
-    mail.on_success           = true
-    mail.on_failure           = true
-
-    mail.from                 = 'sender@email.com'
-    mail.to                   = 'receiver@email.com'
-    mail.address              = 'smtp.gmail.com'
-    mail.port                 = 587
-    mail.domain               = 'your.host.name'
-    mail.user_name            = 'sender@email.com'
-    mail.password             = 'my_password'
-    mail.authentication       = 'plain'
-    mail.enable_starttls_auto = true
-  end
+  # notify_by Mail do |mail|
+  #   mail.on_success           = true
+  #   mail.on_failure           = true
+  #
+  #   mail.from                 = 'backup@jilion.com'
+  #   mail.to                   = 'zeno@jilion.com'
+  #   mail.address              = 'smtp.gmail.com'
+  #   mail.port                 = 587
+  #   mail.domain               = 'jilion.com'
+  #   mail.user_name            = 'sender@email.com'
+  #   mail.password             = ENV['GMAIL_PASSWORD']
+  #   mail.authentication       = 'plain'
+  #   mail.enable_starttls_auto = true
+  # end
 
 end
