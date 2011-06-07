@@ -15,14 +15,12 @@
 
 Backup::Model.new(:backup, 'Jilion Backup') do
 
-  ##
-  # MongoDB [Database]
-  #
+  # MySublime MongoHQ
   database MongoDB do |db|
-    db.name               = "MySublime"
+    db.name               = "app182505"
     db.username           = "backups"
     db.password           = ENV['MONGOHQ_MYSUBLIME_PASSWORD']
-    db.host               = "swan.mongohq.com/app182505"
+    db.host               = "swan.mongohq.com"
     db.port               = 5432
     db.lock               = false
   end
