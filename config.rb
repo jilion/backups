@@ -1,4 +1,5 @@
-require './lib/backup/database/heroku_pgbackups.rb'
+require './lib/backup/database/heroku_pgbackups'
+require './lib/backup/database/freckle'
 
 Backup::Model.new(:backup, 'Jilion Backup') do
 
@@ -50,6 +51,16 @@ Backup::Model.new(:backup, 'Jilion Backup') do
     db.port         = 27073
     db.lock         = false
     db.utility_path = 'bin/mongodump'
+  end
+
+  # ==========================
+  # = jilion.letsfreckle.com =
+  # ==========================
+  database Backup::Database::Freckle do |db|
+    db.name      = 'jilion'
+    db.email     = 'thibaud@jilion.com'
+    db.password  = ENV['FRECKLE_PASSWORD']
+    db.from_date = '2009-09-01'
   end
 
 

@@ -22,10 +22,13 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mechanize (1.0.0)
+      nokogiri (>= 1.2.1)
     mime-types (1.16)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
     net-ssh (2.1.4)
+    nokogiri (1.4.4)
     polyglot (0.3.1)
     rake (0.9.2)
     rest-client (1.6.3)
@@ -44,5 +47,6 @@ DEPENDENCIES
   foreman
   heroku
   mail (~> 2.2.15)
+  mechanize
   net-sftp
   net-ssh
