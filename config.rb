@@ -17,7 +17,9 @@ require './lib/backup/database/heroku_pgbackups.rb'
 
 Backup::Model.new(:backup, 'Jilion Backup') do
 
-  # MySublime MongoHQ
+  # =============
+  # = MySublime =
+  # =============
   database MongoDB do |db|
     db.name               = 'app182505'
     db.username           = 'backups'
@@ -28,14 +30,27 @@ Backup::Model.new(:backup, 'Jilion Backup') do
     db.utility_path       = 'bin/mongodump'
   end
 
-  # MySublime Postgresql
   database Backup::Database::HerokuPgbackups do |db|
     db.name = 'mysublime'
   end
 
-  ##
-  # SFTP (Secure File Transfer Protocol) [Storage]
-  #
+  # ==========
+  # = Aelios =
+  # ==========
+  database MongoDB do |db|
+    db.name               = 'aelios'
+    db.username           = 'backups'
+    db.password           = ENV['MONGOHQ_AELIOS_PASSWORD']
+    db.host               = 'rose.mongohq.com'
+    db.port               = 10046
+    db.lock               = false
+    db.utility_path       = 'bin/mongodump'
+  end
+
+
+  # ===================
+  # = MacMini Storage =
+  # ===================
   store_with SFTP do |server|
     server.username = 'backups'
     server.password = ENV['SFTP_PASSWORD']
@@ -45,9 +60,6 @@ Backup::Model.new(:backup, 'Jilion Backup') do
     server.keep     = 20
   end
 
-  ##
-  # Gzip [Compressor]
-  #
   compress_with Gzip do |compression|
     compression.best = true
     compression.fast = false
