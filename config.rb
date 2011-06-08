@@ -1,50 +1,55 @@
-##
-# Backup
-# Generated Template
-#
-# For more information:
-#
-# View the Git repository at https://github.com/meskyanichi/backup
-# View the Wiki/Documentation at https://github.com/meskyanichi/backup/wiki
-# View the issue log at https://github.com/meskyanichi/backup/issues
-#
-# When you're finished configuring this configuration file,
-# you can run it from the command line by issuing the following command:
-#
-# $ backup perform -t my_backup [-c <path_to_configuration_file>]
-
 require './lib/backup/database/heroku_pgbackups.rb'
 
 Backup::Model.new(:backup, 'Jilion Backup') do
 
-  # =============
-  # = MySublime =
-  # =============
+  # =======================
+  # = my.sublimevideo.net =
+  # =======================
   database MongoDB do |db|
-    db.name               = 'app182505'
-    db.username           = 'backups'
-    db.password           = ENV['MONGOHQ_MYSUBLIME_PASSWORD']
-    db.host               = 'swan.mongohq.com'
-    db.port               = 27021
-    db.lock               = false
-    db.utility_path       = 'bin/mongodump'
+    db.name         = 'app182505'
+    db.username     = 'backups'
+    db.password     = ENV['MONGOHQ_MYSUBLIME_PASSWORD']
+    db.host         = 'swan.mongohq.com'
+    db.port         = 27021
+    db.lock         = false
+    db.utility_path = 'bin/mongodump'
   end
 
   database Backup::Database::HerokuPgbackups do |db|
     db.name = 'mysublime'
   end
 
-  # ==========
-  # = Aelios =
-  # ==========
+  # ====================
+  # = sublimevideo.net =
+  # ====================
+  database Backup::Database::HerokuPgbackups do |db|
+    db.name = 'sublime'
+  end
+
+  # =================
+  # = aeliosapp.com =
+  # =================
   database MongoDB do |db|
-    db.name               = 'aelios'
-    db.username           = 'backups'
-    db.password           = ENV['MONGOHQ_AELIOS_PASSWORD']
-    db.host               = 'rose.mongohq.com'
-    db.port               = 10046
-    db.lock               = false
-    db.utility_path       = 'bin/mongodump'
+    db.name         = 'aelios'
+    db.username     = 'backups'
+    db.password     = ENV['MONGOHQ_AELIOS_PASSWORD']
+    db.host         = 'rose.mongohq.com'
+    db.port         = 10046
+    db.lock         = false
+    db.utility_path = 'bin/mongodump'
+  end
+
+  # ==============
+  # = jilion.com =
+  # ==============
+  database MongoDB do |db|
+    db.name         = 'app275333'
+    db.username     = 'backups'
+    db.password     = ENV['MONGOHQ_JILION_PASSWORD']
+    db.host         = 'flame.mongohq.com'
+    db.port         = 27073
+    db.lock         = false
+    db.utility_path = 'bin/mongodump'
   end
 
 
