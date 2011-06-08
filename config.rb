@@ -13,6 +13,8 @@
 #
 # $ backup perform -t my_backup [-c <path_to_configuration_file>]
 
+require './lib/backup/database/heroku_pgbackups.rb'
+
 Backup::Model.new(:backup, 'Jilion Backup') do
 
   # MySublime MongoHQ
@@ -21,24 +23,14 @@ Backup::Model.new(:backup, 'Jilion Backup') do
     db.username           = "backups"
     db.password           = ENV['MONGOHQ_MYSUBLIME_PASSWORD']
     db.host               = "swan.mongohq.com"
-    db.port               = 5432
+    db.port               = 27021
     db.lock               = false
   end
 
-  ##
-  # PostgreSQL [Database]
-  #
-  # database PostgreSQL do |db|
-  #   db.name               = "my_database_name"
-  #   db.username           = "my_username"
-  #   db.password           = "my_password"
-  #   db.host               = "localhost"
-  #   db.port               = 5432
-  #   db.socket             = "/tmp/pg.sock"
-  #   db.skip_tables        = ['skip', 'these', 'tables']
-  #   db.only_tables        = ['only', 'these' 'tables']
-  #   db.additional_options = ['-xc', '-E=utf8']
-  # end
+  # MySublime Postgresql
+  database Backup::Database::HerokuPgbackups do |db|
+    db.name = 'mysublime'
+  end
 
   ##
   # SFTP (Secure File Transfer Protocol) [Storage]

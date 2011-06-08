@@ -6,10 +6,10 @@ gem 'backup'
 gem 'net-ssh'
 gem 'net-sftp'
 gem 'mail', '~> 2.2.15'
+gem 'heroku'
 
 gem 'clockwork'
 
 group :development do
   gem 'foreman'
-  gem 'heroku'
 end
