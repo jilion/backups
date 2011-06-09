@@ -27,9 +27,9 @@ Backup::Model.new(:backup, 'Jilion Backup') do
     db.name = 'sublime'
   end
 
-  # =================
-  # = aeliosapp.com =
-  # =================
+  # ======================
+  # = data.aeliosapp.com =
+  # ======================
   database MongoDB do |db|
     db.name         = 'aelios'
     db.username     = 'backups'
