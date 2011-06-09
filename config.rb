@@ -1,11 +1,12 @@
 require './lib/backup/database/heroku_pgbackups'
 require './lib/backup/database/freckle'
 
-Backup::Model.new(:backup, 'Jilion Backup') do
+require './config_storage_and_notification'
 
-  # =======================
-  # = my.sublimevideo.net =
-  # =======================
+# =======================
+# = my.sublimevideo.net =
+# =======================
+Backup::Model.new(:mysublime_mongohq, 'MySublime MongoHQ') do
   database MongoDB do |db|
     db.name         = 'app182505'
     db.username     = 'backups'
@@ -15,21 +16,30 @@ Backup::Model.new(:backup, 'Jilion Backup') do
     db.lock         = false
     db.utility_path = 'bin/mongodump'
   end
+  set_storage_and_notification
+end
 
+Backup::Model.new(:mysublime_pg, 'MySublime Postgresql') do
   database Backup::Database::HerokuPgbackups do |db|
     db.name = 'mysublime'
   end
+  set_storage_and_notification
+end
 
-  # ====================
-  # = sublimevideo.net =
-  # ====================
+# ====================
+# = sublimevideo.net =
+# ====================
+Backup::Model.new(:sublime_pg, 'Sublime Postgresql') do
   database Backup::Database::HerokuPgbackups do |db|
     db.name = 'sublime'
   end
+  set_storage_and_notification
+end
 
-  # ======================
-  # = data.aeliosapp.com =
-  # ======================
+# ======================
+# = data.aeliosapp.com =
+# ======================
+Backup::Model.new(:aelios_mongohq, 'Aelios MongoHQ') do
   database MongoDB do |db|
     db.name         = 'aelios'
     db.username     = 'backups'
@@ -39,10 +49,13 @@ Backup::Model.new(:backup, 'Jilion Backup') do
     db.lock         = false
     db.utility_path = 'bin/mongodump'
   end
+  set_storage_and_notification
+end
 
-  # ==============
-  # = jilion.com =
-  # ==============
+# ==============
+# = jilion.com =
+# ==============
+Backup::Model.new(:jilion_mongohq, 'Jilion MongoHQ') do
   database MongoDB do |db|
     db.name         = 'app275333'
     db.username     = 'backups'
@@ -52,51 +65,18 @@ Backup::Model.new(:backup, 'Jilion Backup') do
     db.lock         = false
     db.utility_path = 'bin/mongodump'
   end
+  set_storage_and_notification
+end
 
-  # ==========================
-  # = jilion.letsfreckle.com =
-  # ==========================
+# ==========================
+# = jilion.letsfreckle.com =
+# ==========================
+Backup::Model.new(:jilion_freckle, 'Jilion Freckle') do
   database Backup::Database::Freckle do |db|
     db.name      = 'jilion'
     db.email     = 'thibaud@jilion.com'
     db.password  = ENV['FRECKLE_PASSWORD']
     db.from_date = '2009-09-01'
   end
-
-
-  # ===================
-  # = MacMini Storage =
-  # ===================
-  store_with SFTP do |server|
-    server.username = 'backups'
-    server.password = ENV['SFTP_PASSWORD']
-    server.ip       = 'team.jime.com'
-    server.port     = 22
-    server.path     = '/Shared Items/Backups'
-    server.keep     = 20
-  end
-
-  compress_with Gzip do |compression|
-    compression.best = true
-    compression.fast = false
-  end
-
-  # =====================
-  # = Mail Notification =
-  # =====================
-  notify_by Mail do |mail|
-    mail.on_success           = true
-    mail.on_failure           = true
-
-    mail.from                 = 'backups@jilion.com'
-    mail.to                   = 'zeno@jilion.com, thibaud@jilion.com'
-    mail.address              = 'smtp.gmail.com'
-    mail.port                 = 587
-    mail.domain               = 'jilion.com'
-    mail.user_name            = 'backups@jilion.com'
-    mail.password             = ENV['GMAIL_PASSWORD']
-    mail.authentication       = 'plain'
-    mail.enable_starttls_auto = true
-  end
-
+  set_storage_and_notification
 end

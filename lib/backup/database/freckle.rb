@@ -39,7 +39,7 @@ module Backup
       end
 
       def report_url(format)
-        "http://#{subdomain}.letsfreckle.com/time/report/from/#{from_date}/to/#{to_date}.#{format}"
+        "https://#{subdomain}.letsfreckle.com/time/report/from/#{from_date}/to/#{to_date}.#{format}"
       end
 
       def to_date
