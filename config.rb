@@ -3,15 +3,15 @@ require './lib/backup/database/freckle'
 
 require './config_storage_and_notification'
 
-# =======================
-# = my.sublimevideo.net =
-# =======================
-Backup::Model.new(:mysublime_mongohq, 'MySublime MongoHQ') do
+# ================
+# = SublimeVideo =
+# ================
+Backup::Model.new(:sublimevideo_mongohq, 'SublimeVideo MongoHQ') do
   database MongoDB do |db|
-    db.name         = 'app182505'
+    db.name         = 'sublimevideo'
     db.username     = 'backups'
-    db.password     = ENV['MONGOHQ_MYSUBLIME_PASSWORD']
-    db.host         = 'swan.mongohq.com'
+    db.password     = ENV['MONGOHQ_SUBLIMEVIDEO_PASSWORD']
+    db.host         = 'sublimevideo.member2.mongolayer.com'
     db.port         = 27021
     db.lock         = false
     db.utility_path = 'bin/mongodump'
@@ -19,26 +19,16 @@ Backup::Model.new(:mysublime_mongohq, 'MySublime MongoHQ') do
   set_storage_and_notification
 end
 
-Backup::Model.new(:mysublime_pg, 'MySublime Postgresql') do
+Backup::Model.new(:sublimevideo_pg, 'SublimeVideo Postgresql') do
   database Backup::Database::HerokuPgbackups do |db|
-    db.name = 'mysublime'
+    db.name = 'sublimevideo'
   end
   set_storage_and_notification
 end
 
-# ====================
-# = sublimevideo.net =
-# ====================
-Backup::Model.new(:sublime_pg, 'Sublime Postgresql') do
-  database Backup::Database::HerokuPgbackups do |db|
-    db.name = 'sublime'
-  end
-  set_storage_and_notification
-end
-
-# ======================
-# = data.aeliosapp.com =
-# ======================
+# ==========
+# = Aelios =
+# ==========
 Backup::Model.new(:aelios_mongohq, 'Aelios MongoHQ') do
   database MongoDB do |db|
     db.name         = 'aelios'
@@ -52,9 +42,9 @@ Backup::Model.new(:aelios_mongohq, 'Aelios MongoHQ') do
   set_storage_and_notification
 end
 
-# ==============
-# = jilion.com =
-# ==============
+# ==========
+# = Jilion =
+# ==========
 Backup::Model.new(:jilion_mongohq, 'Jilion MongoHQ') do
   database MongoDB do |db|
     db.name         = 'app275333'
@@ -68,9 +58,6 @@ Backup::Model.new(:jilion_mongohq, 'Jilion MongoHQ') do
   set_storage_and_notification
 end
 
-# ==========================
-# = jilion.letsfreckle.com =
-# ==========================
 Backup::Model.new(:jilion_freckle, 'Jilion Freckle') do
   database Backup::Database::Freckle do |db|
     db.name      = 'jilion'
