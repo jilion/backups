@@ -8,7 +8,7 @@ require './config_storage_and_notification'
 # ================
 Backup::Model.new(:sublimevideo_mongohq, 'SublimeVideo MongoHQ') do
   database MongoDB do |db|
-    db.name         = 'sublimevideo'
+    db.name         = 'sublimevideo_production'
     db.username     = 'backups'
     db.password     = ENV['MONGOHQ_SUBLIMEVIDEO_PASSWORD']
     db.host         = 'hurley.member0.mongohq.com'
