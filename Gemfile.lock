@@ -46,7 +46,7 @@ DEPENDENCIES
   clockwork
   foreman
   heroku
-  mail (~> 2.2.15)
+  mail
   mechanize
   net-sftp
   net-ssh
