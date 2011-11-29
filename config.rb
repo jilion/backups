@@ -11,8 +11,8 @@ Backup::Model.new(:sublimevideo_mongohq, 'SublimeVideo MongoHQ') do
     db.name         = 'sublimevideo'
     db.username     = 'backups'
     db.password     = ENV['MONGOHQ_SUBLIMEVIDEO_PASSWORD']
-    db.host         = 'sublimevideo.member2.mongolayer.com'
-    db.port         = 27021
+    db.host         = 'hurley.member0.mongohq.com'
+    db.port         = 10006
     db.lock         = false
     db.utility_path = 'bin/mongodump'
   end
