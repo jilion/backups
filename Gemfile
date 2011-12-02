@@ -6,7 +6,7 @@ gem 'backup'
 gem 'net-ssh'
 gem 'net-sftp'
 gem 'mail'
-gem 'heroku', '2.2.4'
+gem 'heroku'
 gem 'mechanize'
 
 gem 'clockwork'

@@ -10,9 +10,10 @@ GEM
     foreman (0.26.1)
       term-ansicolor (~> 1.0.5)
       thor (>= 0.13.6)
-    heroku (2.2.4)
+    heroku (2.15.0)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
+      rubyzip
       term-ansicolor (~> 1.0.5)
     i18n (0.6.0)
     launchy (2.0.5)
@@ -40,6 +41,7 @@ GEM
       open4 (>= 0.4.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rubyzip (0.9.5)
     term-ansicolor (1.0.7)
     thor (0.14.6)
     treetop (1.4.10)
@@ -55,7 +57,7 @@ DEPENDENCIES
   backup
   clockwork
   foreman
-  heroku (= 2.2.4)
+  heroku
   mail
   mechanize
   net-sftp
