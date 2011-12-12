@@ -1,4 +1,5 @@
 require 'heroku/command/pgbackups'
+require 'mechanize'
 
 module Backup
   module Database
@@ -16,9 +17,10 @@ module Backup
         Heroku::Command::Pgbackups.new([], app: name, expire: true).capture
         backup_url = Heroku::Command::Pgbackups.new([], app: name).send(:pgbackup_client).get_latest_backup["public_url"]
 
+        agent = Mechanize.new
         File.open("#{File.join(dump_path, name)}.pgdump", 'w') do |f|
           f.binmode
-          f << Net::HTTP.get(URI.parse(backup_url))
+          f << agent.get_file(backup_url)
         end
       end
     end

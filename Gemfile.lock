@@ -10,7 +10,7 @@ GEM
     foreman (0.26.1)
       term-ansicolor (~> 1.0.5)
       thor (>= 0.13.6)
-    heroku (2.14.0)
+    heroku (2.15.0)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
       rubyzip
