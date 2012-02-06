@@ -6,18 +6,18 @@ require './config_storage_and_notification'
 # ================
 # = SublimeVideo =
 # ================
-# Backup::Model.new(:sublimevideo_mongohq, 'SublimeVideo MongoHQ') do
-#   database MongoDB do |db|
-#     db.name         = 'sublimevideo_production'
-#     db.username     = 'backups'
-#     db.password     = ENV['MONGOHQ_SUBLIMEVIDEO_PASSWORD']
-#     db.host         = 'hurley.member0.mongohq.com'
-#     db.port         = 10006
-#     db.lock         = false
-#     db.utility_path = 'bin/mongodump'
-#   end
-#   set_storage_and_notification
-# end
+Backup::Model.new(:sublimevideo_mongohq, 'SublimeVideo MongoHQ') do
+  database MongoDB do |db|
+    db.name         = 'sublimevideo_production'
+    db.username     = 'backups'
+    db.password     = ENV['MONGOHQ_SUBLIMEVIDEO_PASSWORD']
+    db.host         = 'hurley.member0.mongohq.com'
+    db.port         = 10006
+    db.lock         = false
+    db.utility_path = 'bin/mongodump'
+  end
+  set_storage_and_notification
+end
 
 Backup::Model.new(:sublimevideo_pg, 'SublimeVideo Postgresql') do
   database Backup::Database::HerokuPgbackups do |db|
