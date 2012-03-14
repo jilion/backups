@@ -10,7 +10,7 @@ Backup::Model.new(:sublimevideo_stats_mongohq, 'SublimeVideo Stats MongoHQ') do
   database MongoDB do |db|
     db.name         = 'sublimevideo-stats'
     db.username     = 'backups'
-    db.password     = ENV['MONGOHQ_STATS_SUBLIMEVIDEO_PASSWORD']
+    db.password     = ENV['MONGOHQ_SUBLIMEVIDEO_STATS_PASSWORD']
     db.host         = 'sublimevideo.member0.mongolayer.com'
     db.port         = 27017
     db.lock         = false
