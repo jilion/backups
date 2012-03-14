@@ -6,13 +6,13 @@ require './config_storage_and_notification'
 # ================
 # = SublimeVideo =
 # ================
-Backup::Model.new(:sublimevideo_mongohq, 'SublimeVideo MongoHQ') do
+Backup::Model.new(:sublimevideo_stats_mongohq, 'SublimeVideo Stats MongoHQ') do
   database MongoDB do |db|
-    db.name         = 'sublimevideo_production'
+    db.name         = 'sublimevideo-stats'
     db.username     = 'backups'
-    db.password     = ENV['MONGOHQ_SUBLIMEVIDEO_PASSWORD']
-    db.host         = 'hurley.member1.mongohq.com'
-    db.port         = 10006
+    db.password     = ENV['MONGOHQ_STATS_SUBLIMEVIDEO_PASSWORD']
+    db.host         = 'sublimevideo.member0.mongolayer.com'
+    db.port         = 27017
     db.lock         = false
     db.utility_path = 'bin/mongodump'
   end
