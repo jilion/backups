@@ -8,9 +8,8 @@
 	url = git@github.com:jilion/backups.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 [remote "heroku"]
-	url = git@heroku.com:backupsjilion.git
+	url = git@heroku.com:jilion-backups.git
 	fetch = +refs/heads/*:refs/remotes/heroku/*
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master
-

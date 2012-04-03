@@ -21,7 +21,7 @@ end
 
 Backup::Model.new(:sublimevideo_pg, 'SublimeVideo Postgresql') do
   database Backup::Database::HerokuPgbackups do |db|
-    db.name = 'sublimevideo'
+    db.name = 'sv-my'
   end
   set_storage_and_notification
 end
