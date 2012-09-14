@@ -13,7 +13,7 @@ Backup::Model.new(:sublimevideo_stats_mongohq, 'SublimeVideo Stats MongoHQ') do
     db.password     = ENV['MONGOHQ_SUBLIMEVIDEO_STATS_PASSWORD']
     db.host         = 'sublimevideo.member0.mongolayer.com'
     db.port         = 27017
-    db.lock         = false
+    # db.lock         = false
     db.utility_path = 'bin/mongodump'
   end
   set_storage_and_notification
