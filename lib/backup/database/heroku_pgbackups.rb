@@ -19,7 +19,7 @@ module Backup
         backup_url = Heroku::Command::Pgbackups.new([], app: name).send(:pgbackup_client).get_latest_backup["public_url"]
 
         agent = Mechanize.new
-        File.open("#{File.join(dump_path, name)}.pgdump", 'w') do |f|
+        File.open("#{File.join(Config.tmp_path, name)}.pgdump", 'w') do |f|
           f.binmode
           f << agent.get_file(backup_url)
         end

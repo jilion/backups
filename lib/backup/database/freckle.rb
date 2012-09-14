@@ -21,7 +21,7 @@ module Backup
 
         agent = login_agent
         %w[html csv].each do |format|
-          open("#{File.join(dump_path, subdomain)}.#{format}", 'w') do |f|
+          open("#{File.join(Config.tmp_path, subdomain)}.#{format}", 'w') do |f|
             f.puts agent.get_file(report_url(format))
           end
         end
