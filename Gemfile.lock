@@ -26,7 +26,7 @@ GEM
     i18n (0.6.1)
     launchy (2.1.2)
       addressable (~> 2.3)
-    mail (2.3.3)
+    mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -73,7 +73,7 @@ DEPENDENCIES
   foreman
   heroku
   httparty (~> 0.8.1)
-  mail (~> 2.3.0)
+  mail (~> 2.4.0)
   mechanize
   net-sftp
   net-ssh (~> 2.3.0)
