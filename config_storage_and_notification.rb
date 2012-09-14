@@ -43,7 +43,7 @@ module Backup
 
         campfire.api_token = ENV['CAMPFIRE_TOKEN']
         campfire.subdomain = 'jilion'
-        campfire.room_id   = 'SV Dev'
+        campfire.room_id   = "SV\ Dev"
       end
 
     end
