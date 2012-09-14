@@ -36,7 +36,7 @@ module Backup
       # =========================
       # = Campfire Notification =
       # =========================
-      notify_by Campfire do |campfire|
+      notify_by Notifier::Campfire do |campfire|
         campfire.on_success = true
         campfire.on_warning = true
         campfire.on_failure = true
