@@ -32,6 +32,20 @@ module Backup
         mail.authentication       = 'plain'
         mail.enable_starttls_auto = true
       end
+
+      # =========================
+      # = Campfire Notification =
+      # =========================
+      notify_by Campfire do |campfire|
+        campfire.on_success = true
+        campfire.on_warning = true
+        campfire.on_failure = true
+
+        campfire.api_token = ENV['CAMPFIRE_TOKEN']
+        campfire.subdomain = 'jilion'
+        campfire.room_id   = 'SV Dev'
+      end
+
     end
   end
 end
