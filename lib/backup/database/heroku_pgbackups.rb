@@ -6,13 +6,14 @@ module Backup
     class HerokuPgbackups < Base
       attr_accessor :name
 
-      def initialize(&block)
-        instance_eval(&block)
-        prepare!
+      def initialize(model, &block)
+        super(model)
+
+        instance_eval(&block) if block_given?
       end
 
       def perform!
-        log!
+        super
 
         Heroku::Command::Pgbackups.new([], app: name, expire: true).capture
         backup_url = Heroku::Command::Pgbackups.new([], app: name).send(:pgbackup_client).get_latest_backup["public_url"]

@@ -1,4 +1,4 @@
-# require './lib/backup/database/heroku_pgbackups'
+require './lib/backup/database/heroku_pgbackups'
 require './lib/backup/database/freckle'
 
 require './config_storage_and_notification'
@@ -21,13 +21,8 @@ Backup::Model.new(:sublimevideo_stats_mongohq, 'SublimeVideo Stats MongoHQ') do
 end
 
 Backup::Model.new(:sublimevideo_pg, 'SublimeVideo Postgresql') do
-  database PostgreSQL do |db|
-    db.name            = "dcftn9e5gvbo4"
-    db.username        = "u3h1mmhdcv07su"
-    db.password        = ENV['HEROKU_SUBLIMEVIDEO_PG_PASSWORD']
-    db.host            = "ec2-107-20-139-83.compute-1.amazonaws.com"
-    db.port            = 5592
-    db.pg_dump_utility = 'bin/pg_dump'
+  database Backup::Database::HerokuPgbackups do |db|
+    db.name = 'sv-my'
   end
   set_storage_and_notification
 end
