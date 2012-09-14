@@ -5,9 +5,10 @@ ruby '1.9.3'
 
 gem 'backup'
 
-gem 'net-ssh', '~> 2.3.0'
+gem 'net-ssh',  '~> 2.3.0'
 gem 'net-sftp'
-gem 'mail'
+gem 'mail',     '~> 2.3.0'
+gem 'httparty', '~> 0.8.1'
 gem 'heroku'
 gem 'mechanize'
 
