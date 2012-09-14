@@ -14,6 +14,7 @@ Backup::Model.new(:sublimevideo_stats_mongohq, 'SublimeVideo Stats MongoHQ') do
     db.host         = 'sublimevideo.member0.mongolayer.com'
     db.port         = 27017
     db.lock         = false
+    db.mongo_utility     = 'bin/mongo'
     db.mongodump_utility = 'bin/mongodump'
   end
   set_storage_and_notification
@@ -21,11 +22,12 @@ end
 
 Backup::Model.new(:sublimevideo_pg, 'SublimeVideo Postgresql') do
   database PostgreSQL do |db|
-    db.name               = "dcftn9e5gvbo4"
-    db.username           = "u3h1mmhdcv07su"
-    db.password           = ENV['HEROKU_SUBLIMEVIDEO_PG_PASSWORD']
-    db.host               = "ec2-107-20-139-83.compute-1.amazonaws.com"
-    db.port               = 5592
+    db.name            = "dcftn9e5gvbo4"
+    db.username        = "u3h1mmhdcv07su"
+    db.password        = ENV['HEROKU_SUBLIMEVIDEO_PG_PASSWORD']
+    db.host            = "ec2-107-20-139-83.compute-1.amazonaws.com"
+    db.port            = 5592
+    db.pg_dump_utility = 'bin/pg_dump'
   end
   set_storage_and_notification
 end
@@ -41,6 +43,7 @@ Backup::Model.new(:aelios_mongohq, 'Aelios MongoHQ') do
     db.host         = 'rose.mongohq.com'
     db.port         = 10046
     db.lock         = false
+    db.mongo_utility     = 'bin/mongo'
     db.mongodump_utility = 'bin/mongodump'
   end
   set_storage_and_notification
@@ -57,6 +60,7 @@ Backup::Model.new(:jilion_mongohq, 'Jilion MongoHQ') do
     db.host         = 'flame.mongohq.com'
     db.port         = 27073
     db.lock         = false
+    db.mongo_utility     = 'bin/mongo'
     db.mongodump_utility = 'bin/mongodump'
   end
   set_storage_and_notification
