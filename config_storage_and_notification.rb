@@ -13,10 +13,7 @@ module Backup
         server.keep     = 60
       end
 
-      compress_with Compressor::Gzip do |compression|
-        compression.best = true
-        compression.fast = false
-      end
+      compress_with Compressor::Gzip
 
       # =====================
       # = Mail Notification =

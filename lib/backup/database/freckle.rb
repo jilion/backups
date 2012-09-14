@@ -10,13 +10,14 @@ module Backup
 
       alias :subdomain :name
 
-      def initialize(&block)
-        instance_eval(&block)
-        prepare!
+      def initialize(model, &block)
+        super(model)
+
+        instance_eval(&block) if block_given?
       end
 
       def perform!
-        log!
+        super
 
         agent = login_agent
         %w[html csv].each do |format|
