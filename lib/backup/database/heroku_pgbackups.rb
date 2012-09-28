@@ -24,8 +24,6 @@ module Backup
         rescue RestClient::ServiceUnavailable
         end
 
-        puts backup_url
-
         agent = Mechanize.new
         File.open("#{File.join(@dump_path, name)}.#{dump_ext}", 'w') do |f|
           f.binmode
