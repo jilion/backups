@@ -9,7 +9,7 @@ gem 'net-ssh',  '~> 2.3.0'
 gem 'net-sftp'
 gem 'mail',     '~> 2.4.0'
 gem 'httparty', '~> 0.8.1'
-gem 'heroku'
+gem 'heroku',   '~> 2.19.2'
 gem 'mechanize'
 
 gem 'clockwork'
