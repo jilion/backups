@@ -17,19 +17,19 @@ module Backup
 
         dump_ext = 'pgdump'
 
-        Heroku::Command::Pgbackups.new([], app: name, expire: true).capture
-
-        puts `heroku pgbackups:url`
-
         begin
+          Heroku::Command::Pgbackups.new([], app: name, expire: true).capture
+
           backup_url = Heroku::Command::Pgbackups.new([], app: name).send(:pgbackup_client).get_latest_backup["public_url"]
         rescue RestClient::ServiceUnavailable
         end
 
-        agent = Mechanize.new
-        File.open("#{File.join(@dump_path, name)}.#{dump_ext}", 'w') do |f|
-          f.binmode
-          f << agent.get_file(backup_url)
+        if backup_url
+          agent = Mechanize.new
+          File.open("#{File.join(@dump_path, name)}.#{dump_ext}", 'w') do |f|
+            f.binmode
+            f << agent.get_file(backup_url)
+          end
         end
       end
     end
