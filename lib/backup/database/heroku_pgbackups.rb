@@ -19,6 +19,8 @@ module Backup
 
         Heroku::Command::Pgbackups.new([], app: name, expire: true).capture
 
+        puts `heroku pgbackups:url`
+
         begin
           backup_url = Heroku::Command::Pgbackups.new([], app: name).send(:pgbackup_client).get_latest_backup["public_url"]
         rescue RestClient::ServiceUnavailable
