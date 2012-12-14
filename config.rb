@@ -49,11 +49,11 @@ end
 # ==========
 Backup::Model.new(:jilion_mongohq, 'Jilion MongoHQ') do
   database MongoDB do |db|
-    db.name         = 'app275333'
+    db.name         = 'app7493976'
     db.username     = 'backups'
     db.password     = ENV['MONGOHQ_JILION_PASSWORD']
-    db.host         = 'flame.mongohq.com'
-    db.port         = 27073
+    db.host         = 'alex.mongohq.com'
+    db.port         = 10033
     db.lock         = false
     db.mongo_utility     = 'bin/mongo'
     db.mongodump_utility = 'bin/mongodump'
