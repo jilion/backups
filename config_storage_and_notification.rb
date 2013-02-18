@@ -20,6 +20,7 @@ module Backup
       # =====================
       notify_by Notifier::Mail do |mail|
         mail.on_success           = false
+        mail.on_warning           = false
         mail.on_failure           = true
 
         mail.from                 = 'backups@jilion.com'
