@@ -1,5 +1,4 @@
 require './lib/backup/database/heroku_pgbackups'
-require './lib/backup/database/freckle'
 
 require './config_storage_and_notification'
 
@@ -57,16 +56,6 @@ Backup::Model.new(:jilion_mongohq, 'Jilion MongoHQ') do
     db.lock         = false
     db.mongo_utility     = 'bin/mongo'
     db.mongodump_utility = 'bin/mongodump'
-  end
-  set_storage_and_notification
-end
-
-Backup::Model.new(:jilion_freckle, 'Jilion Freckle') do
-  database Backup::Database::Freckle do |db|
-    db.name      = 'jilion'
-    db.email     = 'thibaud@jilion.com'
-    db.password  = ENV['FRECKLE_PASSWORD']
-    db.from_date = '2009-09-01'
   end
   set_storage_and_notification
 end
