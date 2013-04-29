@@ -7,7 +7,7 @@ every(24.hours, nil) do
 end
 
 every(6.hours, nil) do
-  %w[sublimevideo_pg aelios_mongohq jilion_mongohq].each do |backup|
+  %w[my_sublimevideo_pg videos_sublimevideo_pg aelios_mongohq jilion_mongohq].each do |backup|
     system "bundle exec backup perform -t #{backup} -c config.rb -l ."
   end
 end

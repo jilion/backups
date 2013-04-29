@@ -1,6 +1,13 @@
 module Backup
   class Model
     def set_storage_and_notification
+
+      Backup::Utilities.configure do
+        # Database Utilities
+        mongo       'bin/mongo'
+        mongodump   'bin/mongodump'
+      end
+
       # ===================
       # = MacMini Storage =
       # ===================
@@ -23,15 +30,15 @@ module Backup
         mail.on_warning           = false
         mail.on_failure           = true
 
-        mail.from                 = 'backups@jilion.com'
-        mail.to                   = 'zeno@jilion.com, thibaud@jilion.com'
-        mail.address              = 'smtp.gmail.com'
-        mail.port                 = 587
-        mail.domain               = 'jilion.com'
-        mail.user_name            = 'backups@jilion.com'
-        mail.password             = ENV['GMAIL_PASSWORD']
-        mail.authentication       = 'plain'
-        mail.enable_starttls_auto = true
+        mail.from           = 'backups@jilion.com'
+        mail.to             = 'zeno@jilion.com, thibaud@jilion.com'
+        mail.address        = 'smtp.gmail.com'
+        mail.port           = 587
+        mail.domain         = 'jilion.com'
+        mail.user_name      = 'backups@jilion.com'
+        mail.password       = ENV['GMAIL_PASSWORD']
+        mail.authentication = 'plain'
+        mail.encryption     = :starttls
       end
 
       # =========================
@@ -46,7 +53,6 @@ module Backup
         campfire.subdomain = 'jilion'
         campfire.room_id   = "SV+Dev"
       end
-
     end
   end
 end

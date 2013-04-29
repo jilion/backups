@@ -6,8 +6,8 @@ module Backup
     class HerokuPgbackups < Base
       attr_accessor :name
 
-      def initialize(model, &block)
-        super(model)
+      def initialize(model, database_id = nil, &block)
+        super(model, database_id)
 
         instance_eval(&block) if block_given?
       end
