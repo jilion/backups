@@ -25,6 +25,15 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     db.lock     = false
   end
 
+  database MongoDB, :sv_docs_mongohq do |db|
+    db.name     = 'app3367763'
+    db.username = 'heroku'
+    db.password = ENV['MONGOHQ_SUBLIMEVIDEO_DOCS_PASSWORD']
+    db.host     = 'alex.mongohq.com'
+    db.port     = 10040
+    db.lock     = false
+  end
+
   database MongoDB, :aelios_mongohq do |db|
     db.name     = 'aelios'
     db.username = 'backups'
