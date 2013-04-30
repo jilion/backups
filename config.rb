@@ -35,12 +35,12 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
   end
 
   database MongoDB, :jilion_www_mongohq do |db|
-    db.name         = 'app7493976'
-    db.username     = 'backups'
-    db.password     = ENV['MONGOHQ_JILION_PASSWORD']
-    db.host         = 'alex.mongohq.com'
-    db.port         = 10033
-    db.lock         = false
+    db.name     = 'app7493976'
+    db.username = 'backups'
+    db.password = ENV['MONGOHQ_JILION_PASSWORD']
+    db.host     = 'alex.mongohq.com'
+    db.port     = 10033
+    db.lock     = false
   end
 
   # ===================
