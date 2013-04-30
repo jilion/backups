@@ -1,12 +1,11 @@
 Backup::Model.new(:jilion_backups, "All Jilion's databases") do
 
   database PostgreSQL, :sv_videos do |db|
-    db.name               = "dcftn9e5gvbo4"
-    db.username           = "u3h1mmhdcv07su"
+    db.name               = "daabchjq0lpm4e"
+    db.username           = "u31onhqge1gkns"
     db.password           = ENV['SV_VIDEOS_PG_PASSWORD']
-    db.host               = "ec2-54-235-124-104.compute-1.amazonaws.com"
-    db.port               = 5432
-    db.socket             = "/tmp/pg.sock"
+    db.host               = "ec2-54-235-64-220.compute-1.amazonaws.com"
+    db.port               = 5502
   end
 
   # ===================
