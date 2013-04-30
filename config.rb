@@ -1,16 +1,15 @@
 class HerokuPGBackup
+  # Hack to download last pgbackups on local storage so it can be archived.
   def self.download(app)
     "#{system("curl -s `heroku pgbackups:url -a #{app}` -o #{app}.pgdump") && "#{app}.pgdump"}"
   end
 end
 
 Backup::Model.new(:jilion_backups, "All Jilion's databases") do
-
   archive :sv_my_pgdump do |archive|
     archive.root Dir.pwd
     archive.add HerokuPGBackup.download('sv-my')
   end
-
   archive :sv_videos_pgdump do |archive|
     archive.root Dir.pwd
     archive.add HerokuPGBackup.download('sv-videos')
@@ -24,7 +23,6 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     db.port     = 27017
     db.lock     = false
   end
-
   database MongoDB, :sv_docs_mongohq do |db|
     db.name     = 'app3367763'
     db.username = 'heroku'
@@ -33,7 +31,6 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     db.port     = 10040
     db.lock     = false
   end
-
   database MongoDB, :aelios_mongohq do |db|
     db.name     = 'aelios'
     db.username = 'backups'
@@ -42,7 +39,6 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     db.port     = 10046
     db.lock     = false
   end
-
   database MongoDB, :jilion_www_mongohq do |db|
     db.name     = 'app7493976'
     db.username = 'backups'
@@ -52,9 +48,9 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     db.lock     = false
   end
 
-  # ===================
-  # = MacMini Storage =
-  # ===================
+  compress_with Gzip
+
+  # MacMini Storage
   store_with SFTP do |server|
     server.username = 'backups'
     server.password = ENV['SFTP_PASSWORD']
@@ -64,11 +60,6 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     server.keep     = 60
   end
 
-  compress_with Gzip
-
-  # =====================
-  # = Mail Notification =
-  # =====================
   notify_by Mail do |mail|
     mail.on_success           = false
     mail.on_warning           = false
@@ -85,9 +76,6 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     mail.encryption     = :starttls
   end
 
-  # =========================
-  # = Campfire Notification =
-  # =========================
   notify_by Campfire do |campfire|
     campfire.on_success = true
     campfire.on_warning = true
@@ -99,9 +87,6 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
   end
 end
 
-# ===========================
-# = Utilities Configuration =
-# ===========================
 Backup::Utilities.configure do
   mongo     'bin/mongo'
   mongodump 'bin/mongodump'
