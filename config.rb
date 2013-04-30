@@ -86,7 +86,7 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
 
     campfire.api_token = ENV['CAMPFIRE_TOKEN']
     campfire.subdomain = 'jilion'
-    campfire.room_id   = "SV Dev"
+    campfire.room_id   = 448517 # SV Dev
   end
 end
 
