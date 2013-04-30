@@ -1,12 +1,18 @@
 Backup::Model.new(:jilion_backups, "All Jilion's databases") do
 
-  database PostgreSQL, :sv_videos do |db|
-    db.name               = "daabchjq0lpm4e"
-    db.username           = "u31onhqge1gkns"
-    db.password           = ENV['SV_VIDEOS_PG_PASSWORD']
-    db.host               = "ec2-54-235-64-220.compute-1.amazonaws.com"
-    db.port               = 5502
+  # database PostgreSQL, :sv_videos do |db|
+  #   db.name               = "daabchjq0lpm4e"
+  #   db.username           = "u31onhqge1gkns"
+  #   db.password           = ENV['SV_VIDEOS_PG_PASSWORD']
+  #   db.host               = "ec2-54-235-64-220.compute-1.amazonaws.com"
+  #   db.port               = 5502
+  # end
+
+  archive :sv_www_staging do |archive|
+    archive.root Dir.pwd
+    archive.add "#{system('curl -s `heroku pgbackups:url -a sv-www-staging` -o sv_www_staging.pgdump') && 'sv_www_staging.pgdump'}"
   end
+
 
   # ===================
   # = MacMini Storage =
