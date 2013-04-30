@@ -1,17 +1,19 @@
-def download_pgbackups(app)
-  "#{system("curl -s `heroku pgbackups:url -a #{app}` -o #{app}.pgdump") && "#{app}.pgdump"}"
+class HerokuPGBackup
+  def self.download(app)
+    "#{system("curl -s `heroku pgbackups:url -a #{app}` -o #{app}.pgdump") && "#{app}.pgdump"}"
+  end
 end
 
 Backup::Model.new(:jilion_backups, "All Jilion's databases") do
 
   archive :sv_my_pgdump do |archive|
     archive.root Dir.pwd
-    archive.add download_pgbackups('sv-my')
+    archive.add HerokuPGBackup.download('sv-my')
   end
 
   archive :sv_videos_pgdump do |archive|
     archive.root Dir.pwd
-    archive.add download_pgbackups('sv-videos')
+    archive.add HerokuPGBackup.download('sv-videos')
   end
 
   database MongoDB, :sv_my_stats_mongohq do |db|
