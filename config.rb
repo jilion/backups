@@ -61,9 +61,9 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
   end
 
   notify_by Mail do |mail|
-    mail.on_success           = false
-    mail.on_warning           = false
-    mail.on_failure           = true
+    mail.on_success = false
+    mail.on_warning = false
+    mail.on_failure = true
 
     mail.from           = 'backups@jilion.com'
     mail.to             = 'zeno@jilion.com, thibaud@jilion.com'
