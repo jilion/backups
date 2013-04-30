@@ -12,7 +12,7 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
   # ===================
   # = MacMini Storage =
   # ===================
-  store_with Storage::SFTP do |server|
+  store_with SFTP do |server|
     server.username = 'backups'
     server.password = ENV['SFTP_PASSWORD']
     server.ip       = 'team.jime.com'
@@ -21,12 +21,12 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     server.keep     = 60
   end
 
-  compress_with Compressor::Gzip
+  compress_with Gzip
 
   # =====================
   # = Mail Notification =
   # =====================
-  notify_by Notifier::Mail do |mail|
+  notify_by Mail do |mail|
     mail.on_success           = false
     mail.on_warning           = false
     mail.on_failure           = true
@@ -45,7 +45,7 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
   # =========================
   # = Campfire Notification =
   # =========================
-  notify_by Notifier::Campfire do |campfire|
+  notify_by Campfire do |campfire|
     campfire.on_success = true
     campfire.on_warning = true
     campfire.on_failure = true
@@ -55,16 +55,18 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     campfire.room_id   = "SV+Dev"
   end
 
-  # ===========================
-  # = Utilities Configuration =
-  # ===========================
-  Backup::Utilities.configure do
-    # Database Utilities
-    mongo       'bin/mongo'
-    mongodump   'bin/mongodump'
-  end
-
 end
+
+# ===========================
+# = Utilities Configuration =
+# ===========================
+Backup::Utilities.configure do
+  # Database Utilities
+  mongo       'bin/mongo'
+  mongodump   'bin/mongodump'
+  pg_dump     'bin/pg_dump'
+end
+
 
 # require './lib/backup/database/heroku_pgbackups'
 # require './config_storage_and_notification'
