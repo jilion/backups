@@ -65,7 +65,7 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     s3.secret_access_key  = ENV['S3_SECRET_ACCESS_KEY']
     s3.region             = 'us-east-1'
     s3.bucket             = 'jilion-backups'
-    s3.path               = '/'
+    s3.path               = ''
     s3.keep               = 60
   end
 
