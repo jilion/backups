@@ -50,14 +50,23 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
 
   compress_with Gzip
 
-  # MacMini Storage
-  store_with SFTP do |server|
-    server.username = 'backups'
-    server.password = ENV['SFTP_PASSWORD']
-    server.ip       = 'team.jime.com'
-    server.port     = 22
-    server.path     = '/Shared Items/Backups'
-    server.keep     = 60
+  # # MacMini Storage
+  # store_with SFTP do |server|
+  #   server.username = 'backups'
+  #   server.password = ENV['SFTP_PASSWORD']
+  #   server.ip       = 'team.jime.com'
+  #   server.port     = 22
+  #   server.path     = '/Shared Items/Backups'
+  #   server.keep     = 60
+  # end
+
+  store_with S3 do |s3|
+    s3.access_key_id      = ENV['S3_ACCESS_KEY_ID']
+    s3.secret_access_key  = ENV['S3_SECRET_ACCESS_KEY']
+    s3.region             = 'us-east-1'
+    s3.bucket             = 'jilion-backups'
+    s3.path               = '/'
+    s3.keep               = 60
   end
 
   notify_by Mail do |mail|
