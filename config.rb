@@ -18,9 +18,17 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
   database MongoDB, :sv_my_stats_mongohq do |db|
     db.name     = 'sublimevideo-stats'
     db.username = 'backups'
-    db.password = ENV['MONGOHQ_SUBLIMEVIDEO_STATS_PASSWORD']
+    db.password = ENV['MONGOHQ_SUBLIMEVIDEO_MY_PASSWORD']
     db.host     = 'sublimevideo.member0.mongolayer.com'
     db.port     = 27017
+    db.lock     = false
+  end
+  database MongoDB, :sv_stats_mongohq do |db|
+    db.name     = 'app13829477'
+    db.username = 'heroku'
+    db.password = ENV['MONGOHQ_SUBLIMEVIDEO_STATS_PASSWORD']
+    db.host     = 'candidate.5.mongolayer.com'
+    db.port     = 10061
     db.lock     = false
   end
   database MongoDB, :sv_docs_mongohq do |db|
