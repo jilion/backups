@@ -25,7 +25,7 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
   end
   database MongoDB, :sv_stats_mongohq do |db|
     db.name     = 'app13829477'
-    db.username = 'heroku'
+    db.username = 'backups'
     db.password = ENV['MONGOHQ_SUBLIMEVIDEO_STATS_PASSWORD']
     db.host     = 'candidate.5.mongolayer.com'
     db.port     = 10061
@@ -33,7 +33,7 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
   end
   database MongoDB, :sv_docs_mongohq do |db|
     db.name     = 'app3367763'
-    db.username = 'heroku'
+    db.username = 'backups'
     db.password = ENV['MONGOHQ_SUBLIMEVIDEO_DOCS_PASSWORD']
     db.host     = 'alex.mongohq.com'
     db.port     = 10040
