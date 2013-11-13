@@ -15,12 +15,12 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     archive.add HerokuPGBackup.download('sv-videos')
   end
 
-  database MongoDB, :sv_my_stats_mongohq do |db|
-    db.name     = 'sublimevideo-stats'
+  database MongoDB, :sv_my_mongohq do |db|
+    db.name     = 'app1790997'
     db.username = 'backups'
     db.password = ENV['MONGOHQ_SUBLIMEVIDEO_MY_PASSWORD']
-    db.host     = 'sublimevideo.member0.mongolayer.com'
-    db.port     = 27017
+    db.host     = 'penny.mongohq.com'
+    db.port     = 10079
     db.lock     = false
   end
   database MongoDB, :sv_stats_mongohq do |db|
@@ -37,6 +37,14 @@ Backup::Model.new(:jilion_backups, "All Jilion's databases") do
     db.password = ENV['MONGOHQ_SUBLIMEVIDEO_DOCS_PASSWORD']
     db.host     = 'alex.mongohq.com'
     db.port     = 10040
+    db.lock     = false
+  end
+  database MongoDB, :sv_scout_mongohq do |db|
+    db.name     = 'app5169288'
+    db.username = 'backups'
+    db.password = ENV['MONGOHQ_SUBLIMEVIDEO_SCOUT_PASSWORD']
+    db.host     = 'claire.mongohq.com'
+    db.port     = 10083
     db.lock     = false
   end
   database MongoDB, :aelios_mongohq do |db|
